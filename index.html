@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>UK BRAND - Fresh Finds Best Prices</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+
+/* =========================================
+GLOBAL STYLES
+========================================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#ffffff;
+color:#111;
+line-height:1.6;
+}
+
+/* =========================================
+HEADER
+========================================= */
+
+header{
+position:sticky;
+top:0;
+background:#000;
+color:#fff;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:15px 40px;
+z-index:1000;
+}
+
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+font-size:20px;
+font-weight:700;
+}
+
+.logo img{
+width:40px;
+height:40px;
+border-radius:50%;
+}
+
+nav ul{
+display:flex;
+list-style:none;
+gap:30px;
+}
+
+nav a{
+color:#fff;
+text-decoration:none;
+font-weight:500;
+transition:0.3s;
+}
+
+nav a:hover{
+color:#ff0000;
+}
+
+/* CART ICON */
+
+.cart-icon{
+position:relative;
+cursor:pointer;
+font-size:22px;
+}
+
+.cart-count{
+position:absolute;
+top:-8px;
+right:-10px;
+background:red;
+color:#fff;
+font-size:12px;
+padding:2px 6px;
+border-radius:50%;
+}
+
+/* =========================================
+HERO
+========================================= */
+
+.hero{
+height:90vh;
+background:url("https://i.ibb.co/VyGCqd0/IMG-20260305-WA0027-1.jpg") center/cover no-repeat;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:#fff;
+position:relative;
+}
+
+.hero::after{
+content:'';
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.6);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:700px;
+}
+
+.hero h1{
+font-size:48px;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:20px;
+margin-bottom:25px;
+}
+
+.btn{
+background:red;
+padding:14px 30px;
+border:none;
+border-radius:30px;
+color:#fff;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+.btn:hover{
+background:#ff3333;
+transform:scale(1.05);
+}
+
+/* =========================================
+PRODUCT SECTION
+========================================= */
+
+.section{
+padding:70px 40px;
+}
+
+.section-title{
+text-align:center;
+font-size:32px;
+margin-bottom:40px;
+}
+
+.carousel{
+display:flex;
+gap:20px;
+overflow-x:auto;
+scroll-behavior:smooth;
+}
+
+.carousel::-webkit-scrollbar{
+display:none;
+}
+
+/* PRODUCT CARD */
+
+.product-card{
+min-width:250px;
+background:#fff;
+border-radius:15px;
+box-shadow:0 10px 20px rgba(0,0,0,0.1);
+padding:15px;
+transition:0.3s;
+position:relative;
+}
+
+.product-card:hover{
+transform:translateY(-8px);
+}
+
+.product-img{
+width:100%;
+height:200px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.product-name{
+font-weight:600;
+margin:10px 0;
+}
+
+.price{
+color:red;
+font-weight:700;
+margin-bottom:5px;
+}
+
+.stars{
+color:#ffb400;
+font-size:14px;
+margin-bottom:10px;
+}
+
+.add-cart{
+width:100%;
+padding:10px;
+background:#000;
+color:#fff;
+border:none;
+border-radius:20px;
+cursor:pointer;
+}
+
+.add-cart:hover{
+background:red;
+}
+
+/* =========================================
+CART DRAWER
+========================================= */
+
+.cart-drawer{
+position:fixed;
+right:-400px;
+top:0;
+width:350px;
+height:100%;
+background:#fff;
+box-shadow:-5px 0 20px rgba(0,0,0,0.2);
+padding:20px;
+transition:0.4s;
+z-index:2000;
+overflow-y:auto;
+}
+
+.cart-drawer.active{
+right:0;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+margin-bottom:10px;
+border-bottom:1px solid #eee;
+padding-bottom:5px;
+}
+
+.total{
+font-weight:700;
+margin:10px 0;
+}
+
+/* ORDER FORM */
+
+form input, form textarea{
+width:100%;
+padding:10px;
+margin-bottom:10px;
+border:1px solid #ddd;
+border-radius:6px;
+}
+
+.send-btn{
+background:red;
+color:#fff;
+border:none;
+padding:12px;
+width:100%;
+border-radius:20px;
+cursor:pointer;
+}
+
+/* =========================================
+WHATSAPP
+========================================= */
+
+.whatsapp{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#25D366;
+color:#fff;
+padding:15px 18px;
+border-radius:50%;
+font-size:22px;
+text-decoration:none;
+}
+
+/* =========================================
+FOOTER
+========================================= */
+
+footer{
+background:#000;
+color:#fff;
+text-align:center;
+padding:40px;
+margin-top:60px;
+}
+
+/* =========================================
+RESPONSIVE
+========================================= */
+
+@media(max-width:768px){
+
+nav ul{
+display:none;
+}
+
+.hero h1{
+font-size:34px;
+}
+
+.carousel{
+gap:15px;
+}
+
+.product-card{
+min-width:200px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+<div class="logo">
+<img src="https://i.ibb.co/60Rzwpgr/IMG-20260305-WA0000.jpg">
+<span>UK BRAND</span>
+</div>
+
+<nav>
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#products">New Arrivals</a></li>
+<li><a href="#products">Best Sellers</a></li>
+<li><a href="#products">Featured</a></li>
+<li><a href="#products">Shop</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<div class="cart-icon" onclick="toggleCart()">
+🛒
+<span class="cart-count" id="cartCount">0</span>
+</div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+<h1>Wear Stylish and Comfortable Footwear</h1>
+<p>Fresh Finds Best Prices</p>
+
+<button class="btn" onclick="scrollToProducts()">Shop Now</button>
+
+</div>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section class="section" id="products">
+
+<h2 class="section-title">Featured Sneakers</h2>
+
+<div class="carousel" id="productContainer"></div>
+
+</section>
+
+<!-- CART -->
+
+<div class="cart-drawer" id="cartDrawer">
+
+<h2>Your Cart</h2>
+
+<div id="cartItems"></div>
+
+<div class="total" id="cartTotal">Total: 0</div>
+
+<h3>Order Details</h3>
+
+<form id="orderForm">
+
+<input type="text" id="name" placeholder="Customer Name" required>
+
+<input type="text" id="phone" placeholder="Phone Number" required>
+
+<textarea id="address" placeholder="Address"></textarea>
+
+<input type="text" id="city" placeholder="City">
+
+<button class="send-btn" type="submit">Send Order</button>
+
+</form>
+
+</div>
+
+<!-- WHATSAPP -->
+
+<a class="whatsapp" href="https://wa.me/03038457357" target="_blank">💬</a>
+
+<!-- FOOTER -->
+
+<footer id="contact">
+
+<h3>UK BRAND</h3>
+<p>Street Address</p>
+<p>City</p>
+<p>Phone: 03038457357</p>
+<p>Email: bilalkhanakakhail777@gmail.com</p>
+
+</footer>
+
+<script>
+
+/* =========================================
+EMAILJS INIT
+========================================= */
+
+(function(){
+emailjs.init("YOUR_PUBLIC_KEY");
+})();
+
+/* =========================================
+PRODUCT DATA
+========================================= */
+
+const products=[
+
+{name:"Sneaker 1",price:6499,img1:"https://i.ibb.co/VyGCqd0/IMG-20260305-WA0027-1.jpg",img2:"https://i.ibb.co/0RkspPLd/IMG-20260305-WA0026.jpg"},
+
+{name:"Sneaker 2",price:6499,img1:"https://i.ibb.co/RGGRbtLy/IMG-20260305-WA0025-1.jpg"},
+
+{name:"Sneaker 3",price:6499,img1:"https://i.ibb.co/VpQzkbP6/IMG-20260305-WA0023.jpg",img2:"https://i.ibb.co/j0dyXTr/IMG-20260305-WA0022.jpg"},
+
+{name:"Sneaker 4",price:5999,img1:"https://i.ibb.co/RTV7J32V/IMG-20260305-WA0019.jpg",img2:"https://i.ibb.co/G3Rqy276/IMG-20260305-WA0018.jpg"},
+
+{name:"Sneaker 5",price:5999,img1:"https://i.ibb.co/dwGSYmK8/IMG-20260305-WA0020.jpg",img2:"https://i.ibb.co/LhdtGvxs/IMG-20260305-WA0021.jpg"},
+
+{name:"Sneaker 6",price:6499,img1:"https://i.ibb.co/v4pdgyf3/IMG-20260305-WA0016.jpg",img2:"https://i.ibb.co/jkQ8ndp1/IMG-20260305-WA0015.jpg"},
+
+{name:"Sneaker 7",price:5999,img1:"https://i.ibb.co/0yW79qLX/IMG-20260305-WA0024.jpg",img2:"https://i.ibb.co/351ZHwTd/IMG-20260305-WA0017.jpg"},
+
+{name:"Sneaker 8",price:4499,img1:"https://i.ibb.co/0V6XcjP2/IMG-20260305-WA0014.jpg",img2:"https://i.ibb.co/RpBd09VL/IMG-20260305-WA0013.jpg"},
+
+{name:"Sneaker 9",price:4499,img1:"https://i.ibb.co/SXc8fC47/IMG-20260305-WA0012.jpg",img2:"https://i.ibb.co/nVHNtLz/IMG-20260305-WA0011.jpg"},
+
+{name:"Sneaker 10",price:3499,img1:"https://i.ibb.co/8n7WcqnM/IMG-20260305-WA0009.jpg",img2:"https://i.ibb.co/MxggRXYb/IMG-20260305-WA0010.jpg"},
+
+{name:"Sneaker 11",price:6499,img1:"https://i.ibb.co/LD0sYDPL/IMG-20260305-WA0008.jpg",img2:"https://i.ibb.co/nsr8m8bN/IMG-20260305-WA0007.jpg"},
+
+{name:"Sneaker 12",price:6499,img1:"https://i.ibb.co/V8LRncG/IMG-20260305-WA0006.jpg",img2:"https://i.ibb.co/xSBvtgML/IMG-20260305-WA0005.jpg"},
+
+{name:"Sneaker 13",price:3499,img1:"https://i.ibb.co/GQ9F2JWD/IMG-20260305-WA0004.jpg",img2:"https://i.ibb.co/mC2XnVPc/IMG-20260305-WA0003.jpg"},
+
+{name:"Sneaker 14",price:3499,img1:"https://i.ibb.co/Z18Ht5qX/IMG-20260305-WA0002.jpg",img2:"https://i.ibb.co/k6VHzT7x/IMG-20260305-WA0001.jpg"}
+
+];
+
+/* =========================================
+RENDER PRODUCTS
+========================================= */
+
+const container=document.getElementById("productContainer");
+
+products.forEach((p,i)=>{
+
+let card=document.createElement("div");
+card.className="product-card";
+
+card.innerHTML=`
+
+<img src="${p.img1}" class="product-img" id="img${i}">
+
+<div class="product-name">${p.name}</div>
+
+<div class="price">PKR ${p.price}</div>
+
+<div class="stars">★★★★★</div>
+
+<button class="add-cart" onclick="addToCart(${i})">Add to Cart</button>
+
+`;
+
+if(p.img2){
+
+card.onmouseenter=()=>document.getElementById("img"+i).src=p.img2;
+
+card.onmouseleave=()=>document.getElementById("img"+i).src=p.img1;
+
+}
+
+container.appendChild(card);
+
+});
+
+/* =========================================
+CART SYSTEM
+========================================= */
+
+let cart=[];
+
+function addToCart(i){
+
+cart.push(products[i]);
+
+updateCart();
+
+}
+
+function updateCart(){
+
+const items=document.getElementById("cartItems");
+
+items.innerHTML="";
+
+let total=0;
+
+cart.forEach(p=>{
+
+total+=p.price;
+
+items.innerHTML+=`
+<div class="cart-item">
+<span>${p.name}</span>
+<span>${p.price}</span>
+</div>
+`;
+
+});
+
+document.getElementById("cartTotal").innerText="Total: PKR "+total;
+
+document.getElementById("cartCount").innerText=cart.length;
+
+}
+
+function toggleCart(){
+
+document.getElementById("cartDrawer").classList.toggle("active");
+
+}
+
+/* =========================================
+SCROLL
+========================================= */
+
+function scrollToProducts(){
+
+document.getElementById("products").scrollIntoView({behavior:"smooth"});
+
+}
+
+/* =========================================
+SEND ORDER
+========================================= */
+
+document.getElementById("orderForm").addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let orderList=cart.map(p=>p.name+" - "+p.price).join(", ");
+
+let total=cart.reduce((t,p)=>t+p.price,0);
+
+let params={
+name:document.getElementById("name").value,
+phone:document.getElementById("phone").value,
+address:document.getElementById("address").value,
+city:document.getElementById("city").value,
+order:orderList,
+total:total
+};
+
+emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",params)
+.then(function(){
+
+alert("Order sent successfully!");
+
+cart=[];
+updateCart();
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
